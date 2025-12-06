@@ -1,0 +1,151 @@
+.dashboard {
+  min-height: 100vh;
+  background: var(--gray-50);
+}
+
+.portfolio-header {
+  padding: 2rem 2rem 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.portfolio-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.subtitle {
+  margin: 0.5rem 0 0 0;
+  color: var(--gray-500);
+  font-size: 1rem;
+}
+
+.stats-bar {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  min-width: 100px;
+}
+
+.stat-number {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.25rem;
+}
+
+.stat-no-pulse .stat-number { color: var(--gray-400); }
+.stat-on-track .stat-number { color: var(--status-on-track); }
+.stat-at-risk .stat-number { color: var(--status-at-risk); }
+.stat-blocked .stat-number { color: var(--status-blocked); }
+.stat-completed .stat-number { color: var(--status-completed); }
+
+.filters-bar {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--asu-maroon);
+}
+
+.filter-select {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: white;
+  cursor: pointer;
+  min-width: 150px;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--asu-maroon);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 0 2rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  color: var(--gray-500);
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: 1.5rem 1rem;
+  }
+
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .stats-bar {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .stat-item {
+    padding: 0.5rem 1rem;
+    min-width: 80px;
+  }
+
+  .stat-number {
+    font-size: 1.25rem;
+  }
+
+  .filters-bar {
+    padding: 1rem;
+  }
+
+  .projects-grid {
+    padding: 0 1rem 1rem;
+    gap: 1rem;
+  }
+}

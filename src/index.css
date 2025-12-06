@@ -1,0 +1,75 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* ASU EPICS Brand Colors */
+  --asu-maroon: #8c1d40;
+  --asu-gold: #ffc627;
+  --asu-blue: #00a3e0;
+  --asu-orange: #ff7f32;
+  --asu-green: #78be20;
+
+  /* Neutral colors */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  /* Status colors */
+  --status-on-track: #78be20;
+  --status-at-risk: #ffc627;
+  --status-blocked: #8c1d40;
+  --status-completed: #00a3e0;
+
+  /* Typography */
+  font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--gray-50);
+  color: var(--gray-900);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+}

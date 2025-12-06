@@ -1,0 +1,414 @@
+/* Org Chart Tile */
+.org-chart-tile {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.org-chart-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.org-preview {
+  padding: 1rem 0;
+}
+
+.preview-hierarchy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.preview-node {
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.preview-director {
+  background: rgba(140, 29, 64, 0.1);
+  color: var(--asu-maroon);
+}
+
+.preview-instructor {
+  background: rgba(0, 163, 224, 0.1);
+  color: var(--asu-blue);
+}
+
+.preview-aa {
+  background: rgba(120, 190, 32, 0.1);
+  color: #5a9e18;
+}
+
+.preview-ta {
+  background: rgba(255, 198, 39, 0.2);
+  color: #9a6700;
+}
+
+.preview-line {
+  width: 2px;
+  height: 12px;
+  background: var(--gray-300);
+}
+
+.preview-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tile-hint {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  text-align: center;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.org-chart-modal {
+  padding: 2rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: var(--gray-100);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-500);
+  transition: background 0.2s;
+}
+
+.modal-close:hover {
+  background: var(--gray-200);
+  color: var(--gray-700);
+}
+
+.org-chart-modal h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.5rem;
+  color: var(--gray-900);
+  text-align: center;
+}
+
+/* Org Chart Visual */
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--gray-50);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.org-level {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.org-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.node-icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.node-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.node-subtitle {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  margin-top: 0.15rem;
+}
+
+.director-node {
+  background: linear-gradient(135deg, var(--asu-maroon), #6b1530);
+  color: white;
+}
+
+.instructor-node {
+  background: linear-gradient(135deg, var(--asu-blue), #0088c7);
+  color: white;
+}
+
+.aa-node {
+  background: linear-gradient(135deg, #78be20, #5fa018);
+  color: white;
+}
+
+.ta-node {
+  background: linear-gradient(135deg, var(--asu-gold), #e5a800);
+  color: var(--gray-900);
+}
+
+.project-node {
+  background: white;
+  border: 2px solid var(--gray-200);
+  color: var(--gray-700);
+}
+
+.org-connector.vertical {
+  width: 3px;
+  height: 24px;
+  background: var(--gray-300);
+  margin: 0.25rem 0;
+}
+
+/* Role Descriptions */
+.role-descriptions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.role-card {
+  padding: 1rem;
+  border-radius: 10px;
+  border-left: 4px solid;
+}
+
+.role-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.role-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+.director-card {
+  background: rgba(140, 29, 64, 0.05);
+  border-color: var(--asu-maroon);
+}
+
+.instructor-card {
+  background: rgba(0, 163, 224, 0.05);
+  border-color: var(--asu-blue);
+}
+
+.aa-card {
+  background: rgba(120, 190, 32, 0.05);
+  border-color: #78be20;
+}
+
+.ta-card {
+  background: rgba(255, 198, 39, 0.08);
+  border-color: var(--asu-gold);
+}
+
+/* Framework Section */
+.framework-section {
+  background: var(--gray-50);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.framework-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  color: var(--gray-800);
+}
+
+.framework-diagram {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.framework-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: white;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--gray-700);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.framework-icon {
+  font-size: 1.1rem;
+}
+
+.framework-arrow {
+  color: var(--gray-400);
+  font-weight: bold;
+}
+
+/* Check-in Section */
+.checkin-section {
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.checkin-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  color: var(--gray-800);
+}
+
+.checkin-timeline {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.checkin-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 80px;
+  padding: 0.75rem;
+  background: var(--gray-50);
+  border-radius: 8px;
+}
+
+.checkin-item.highlight {
+  background: rgba(255, 122, 0, 0.1);
+  border: 1px solid var(--asu-orange);
+}
+
+.checkin-week {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--gray-500);
+  text-transform: uppercase;
+}
+
+.checkin-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.checkin-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.ta-badge {
+  background: rgba(255, 198, 39, 0.2);
+  color: #9a6700;
+}
+
+.aa-badge {
+  background: rgba(120, 190, 32, 0.15);
+  color: #5a9e18;
+}
+
+.dr-badge {
+  background: var(--asu-orange);
+  color: white;
+}
+
+.checkin-note {
+  font-size: 0.6rem;
+  color: var(--gray-500);
+  font-style: italic;
+}
+
+.checkin-summary {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 1rem;
+  }
+
+  .org-chart-modal {
+    padding: 1.5rem;
+  }
+
+  .role-descriptions {
+    grid-template-columns: 1fr;
+  }
+
+  .org-level.org-bottom {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .framework-diagram {
+    flex-direction: column;
+  }
+
+  .framework-arrow {
+    transform: rotate(90deg);
+  }
+
+  .checkin-timeline {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

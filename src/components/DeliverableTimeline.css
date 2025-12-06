@@ -1,0 +1,427 @@
+.deliverable-timeline {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.timeline-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.timeline-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--gray-900);
+}
+
+.timeline-header .progress-summary {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.timeline-legend {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.timeline-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--gray-500);
+}
+
+.timeline-legend .legend-dot {
+  font-size: 0.85rem;
+}
+
+.timeline-legend .status-none { color: var(--gray-400); }
+.timeline-legend .status-red { color: #dc3545; }
+.timeline-legend .status-yellow { color: #f0ad4e; }
+.timeline-legend .status-green { color: #78be20; }
+
+/* Timeline Track */
+.timeline-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Design Stage Headers */
+.design-stage-header {
+  grid-column: 1 / -1;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.timeline-phase:first-child .design-stage-header {
+  margin-top: 0;
+}
+
+.design-stage-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--asu-maroon);
+  background: rgba(140, 29, 64, 0.08);
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  border-left: 3px solid var(--asu-maroon);
+}
+
+.design-stage-label.stage-complete {
+  background: rgba(120, 190, 32, 0.1);
+  border-left-color: #78be20;
+  color: #5a9e18;
+}
+
+.stage-check {
+  font-size: 0.8rem;
+}
+
+/* Stage Gates */
+.stage-gate {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-right: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stage-gate.locked {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  border: 1px dashed rgba(220, 53, 69, 0.3);
+}
+
+.stage-gate.unlocked {
+  background: rgba(120, 190, 32, 0.1);
+  color: #78be20;
+  border: 1px solid rgba(120, 190, 32, 0.3);
+}
+
+.gate-icon {
+  font-size: 0.75rem;
+}
+
+.gate-label {
+  font-size: 0.6rem;
+}
+
+.timeline-phase {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 1rem;
+  position: relative;
+}
+
+/* Phase Connector (left side) */
+.phase-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.connector-line {
+  width: 3px;
+  flex: 1;
+  min-height: 20px;
+  background: var(--gray-200);
+}
+
+.phase-node {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background: var(--gray-200);
+  color: var(--gray-500);
+  border: 3px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.phase-node.complete {
+  background: #78be20;
+  color: white;
+}
+
+.phase-node.in-progress {
+  background: var(--asu-gold);
+  color: var(--gray-900);
+}
+
+.phase-node.attention {
+  background: #dc3545;
+  color: white;
+}
+
+.phase-node.pending {
+  background: var(--gray-200);
+  color: var(--gray-500);
+}
+
+/* Phase Content (right side) */
+.phase-content {
+  padding: 0.75rem 0 1.5rem 0;
+}
+
+.phase-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.phase-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.phase-week {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  font-weight: 500;
+}
+
+.phase-description {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+/* Phase Deliverables */
+.phase-deliverables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.phase-deliverable {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  background: var(--gray-50);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.phase-deliverable:hover {
+  background: var(--gray-100);
+}
+
+.deliverable-dot {
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.deliverable-dot.status-none { color: var(--gray-400); }
+.deliverable-dot.status-red { color: #dc3545; }
+.deliverable-dot.status-yellow { color: #f0ad4e; }
+.deliverable-dot.status-green { color: #78be20; }
+
+.deliverable-label {
+  color: var(--gray-700);
+}
+
+.deliverable-label a {
+  color: var(--asu-blue);
+  text-decoration: none;
+}
+
+.deliverable-label a:hover {
+  text-decoration: underline;
+}
+
+.team-indicator {
+  font-size: 0.6rem;
+  padding: 0.1rem 0.3rem;
+  background: rgba(140, 29, 64, 0.1);
+  color: var(--asu-maroon);
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* Approval Checkboxes */
+.approval-checkboxes {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 0.5rem;
+}
+
+.approval-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 18px;
+  font-size: 0.6rem;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-300);
+  border-radius: 3px;
+  color: var(--gray-400);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+  font-family: inherit;
+}
+
+.approval-box:hover {
+  background: var(--gray-200);
+  border-color: var(--gray-400);
+  transform: scale(1.05);
+}
+
+.approval-box:active {
+  transform: scale(0.95);
+}
+
+.approval-box .approval-label {
+  font-size: 0.5rem;
+  font-weight: 600;
+}
+
+.approval-box.approved {
+  background: rgba(120, 190, 32, 0.2);
+  border-color: #78be20;
+  color: #4a7c14;
+  font-weight: 700;
+}
+
+.approval-box.approved:hover {
+  background: rgba(120, 190, 32, 0.3);
+  border-color: #5a9e18;
+}
+
+.approval-box.approved .approval-label {
+  display: none;
+}
+
+/* Status-based styling for deliverables */
+.phase-deliverable.status-red {
+  background: rgba(220, 53, 69, 0.1);
+  border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.phase-deliverable.status-yellow {
+  background: rgba(255, 198, 39, 0.15);
+  border: 1px solid rgba(255, 198, 39, 0.3);
+}
+
+.phase-deliverable.status-green {
+  background: rgba(120, 190, 32, 0.1);
+  border: 1px solid rgba(120, 190, 32, 0.2);
+}
+
+/* Phase status styling */
+.phase-complete .connector-line {
+  background: #78be20;
+}
+
+.phase-in-progress .connector-line:first-child {
+  background: linear-gradient(to bottom, #78be20, var(--asu-gold));
+}
+
+.phase-attention .connector-line:first-child {
+  background: linear-gradient(to bottom, var(--gray-200), #dc3545);
+}
+
+.progress-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.progress-label {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.progress-phases {
+  display: flex;
+  gap: 4px;
+  height: 8px;
+}
+
+.progress-segment {
+  flex: 1;
+  border-radius: 4px;
+  background: var(--gray-200);
+  transition: background 0.3s;
+}
+
+.progress-segment.complete {
+  background: #78be20;
+}
+
+.progress-segment.in-progress {
+  background: var(--asu-gold);
+}
+
+.progress-segment.attention {
+  background: #dc3545;
+}
+
+.progress-segment.pending {
+  background: var(--gray-200);
+}
+
+.progress-segment.empty {
+  background: var(--gray-100);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .timeline-header {
+    flex-direction: column;
+  }
+
+  .timeline-phase {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .phase-node {
+    width: 30px;
+    height: 30px;
+    font-size: 0.75rem;
+  }
+
+  .phase-deliverables {
+    flex-direction: column;
+  }
+
+  .phase-deliverable {
+    width: fit-content;
+  }
+}
