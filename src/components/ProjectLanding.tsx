@@ -213,7 +213,7 @@ interface KanbanTask {
   column: 'backlog' | 'in-progress' | 'blocked' | 'done';
 }
 
-function MentoringSection({ project }: MentoringSectionProps) {
+function MentoringSection({ project: _project }: MentoringSectionProps) {
   // Weekly progress report link (set by students)
   const [progressReportLink, setProgressReportLink] = useState('');
   const [savedProgressLink, setSavedProgressLink] = useState('');
@@ -563,7 +563,7 @@ interface ProjectLandingContentProps {
   newPostContent: string;
   setNewPostContent: (val: string) => void;
   newPostMedia: FeedMedia[];
-  feedFileInputRef: React.RefObject<HTMLInputElement>;
+  feedFileInputRef: React.RefObject<HTMLInputElement | null>;
   handleFeedMediaUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleCreatePost: () => void;
   handleAddReaction: (postId: string, emoji: string) => void;
