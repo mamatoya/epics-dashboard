@@ -72,4 +72,5 @@ export interface Project {
   stage?: ProjectStage; // Project stage (1, 2, or 3)
   isIndonesia?: boolean; // Indonesia project flag
   deliverables?: Record<string, DeliverableSubmission>; // Deliverable submissions by deliverable ID
+  peopleImpacted?: number; // Estimated number of people impacted by this project
 }

@@ -23,7 +23,8 @@ export const projects: Project[] = [
     campus: 'Tempe',
     meetingTime: { day: 'Wednesday', time: '4:35-5:25p' },
     springStatus: 'Monday 4:00-5:15pm',
-    designReviewScore: 1.0
+    designReviewScore: 1.0,
+    peopleImpacted: 1
   },
   {
     id: 'cass-secure-cell-phone-charger',
@@ -43,7 +44,8 @@ export const projects: Project[] = [
     campus: 'Tempe',
     meetingTime: { day: 'Monday', time: '4:10-5:00p' },
     springStatus: 'Monday 4:00-5:15pm',
-    designReviewScore: 1.0
+    designReviewScore: 1.0,
+    peopleImpacted: 500
   },
   {
     id: 'ecmo-bridge',
@@ -63,7 +65,8 @@ export const projects: Project[] = [
     campus: 'Tempe',
     meetingTime: { day: 'Wednesday', time: '4:35-5:25p' },
     springStatus: 'Monday 4:00-5:15pm',
-    designReviewScore: 1.0
+    designReviewScore: 1.0,
+    peopleImpacted: 50
   },
   {
     id: 'enable-revival',
@@ -82,7 +85,8 @@ export const projects: Project[] = [
     category: 'Health',
     campus: 'Tempe',
     springStatus: 'Monday 4:00-5:15pm',
-    designReviewScore: 0.75
+    designReviewScore: 0.75,
+    peopleImpacted: 250
   },
   {
     id: 'monkey-enrichment',
@@ -120,7 +124,8 @@ export const projects: Project[] = [
     category: 'Health',
     campus: 'Tempe',
     springStatus: 'Monday 5:30-6:45pm (returning as eNABLE stage 1 team)',
-    designReviewScore: 0.75
+    designReviewScore: 0.75,
+    peopleImpacted: 100
   },
   {
     id: 'ar-fitness-coach',
@@ -177,7 +182,8 @@ export const projects: Project[] = [
     category: 'Education',
     campus: 'Tempe',
     meetingTime: { day: 'Monday', time: '6:00-6:50p' },
-    springStatus: 'Monday 5:30-6:45pm (Renaming to Fireflyt)'
+    springStatus: 'Monday 5:30-6:45pm (Renaming to Fireflyt)',
+    peopleImpacted: 5000
   },
   {
     id: 'fse-100-ar-vr-activity',
@@ -196,7 +202,8 @@ export const projects: Project[] = [
     category: 'Education',
     campus: 'Tempe',
     springStatus: 'Monday 5:30-6:45pm',
-    designReviewScore: 1.0
+    designReviewScore: 1.0,
+    peopleImpacted: 2500
   },
   {
     id: 'personal-protective-equipment-ppe',
