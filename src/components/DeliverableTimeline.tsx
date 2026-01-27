@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import type { Project, DeliverableStatus, DeliverableApprovals } from '../types/project';
+import { useState, useEffect } from 'react';
+import type { Project } from '../types/project';
 import './DeliverableTimeline.css';
 
 interface DeliverableTimelineProps {
   project: Project;
 }
 
-// Type for tracking approval state
-type ApprovalState = Record<string, DeliverableApprovals>;
+// Type for tracking completed deliverables
+type CompletedState = Record<string, boolean>;
 
 // Design stages (director's framework)
 const designStages = [
@@ -114,56 +114,46 @@ const phases = [
   }
 ];
 
-const statusConfig: Record<DeliverableStatus, { icon: string; className: string }> = {
-  'none': { icon: '○', className: 'status-none' },
-  'red': { icon: '●', className: 'status-red' },
-  'yellow': { icon: '●', className: 'status-yellow' },
-  'green': { icon: '●', className: 'status-green' }
-};
-
-const approvalLabels: { key: keyof DeliverableApprovals; label: string }[] = [
-  { key: 'aa', label: 'AA' },
-  { key: 'ta', label: 'TA' },
-  { key: 'cp', label: 'CP' },
-  { key: 'instructor', label: 'Inst' },
-];
+// localStorage key for completed deliverables
+const getStorageKey = (projectId: string) => `epics-deliverables-${projectId}`;
 
 export function DeliverableTimeline({ project }: DeliverableTimelineProps) {
-  // Initialize approval state from project data
-  const initializeApprovals = (): ApprovalState => {
-    const state: ApprovalState = {};
-    if (project.deliverables) {
-      Object.entries(project.deliverables).forEach(([id, submission]) => {
-        if (submission.approvals) {
-          state[id] = { ...submission.approvals };
-        }
-      });
+  // Initialize completed state from localStorage
+  const initializeCompleted = (): CompletedState => {
+    try {
+      const stored = localStorage.getItem(getStorageKey(project.id));
+      if (stored) {
+        return JSON.parse(stored);
+      }
+    } catch (e) {
+      console.error('Failed to load deliverable state from localStorage', e);
     }
-    return state;
+    return {};
   };
 
-  const [approvals, setApprovals] = useState<ApprovalState>(initializeApprovals);
+  const [completed, setCompleted] = useState<CompletedState>(initializeCompleted);
 
-  const toggleApproval = (deliverableId: string, approvalKey: keyof DeliverableApprovals) => {
-    setApprovals(prev => {
-      const current = prev[deliverableId] || { aa: false, ta: false, cp: false, instructor: false };
-      return {
-        ...prev,
-        [deliverableId]: {
-          ...current,
-          [approvalKey]: !current[approvalKey]
-        }
-      };
-    });
-    // In a real app, this would also save to backend
-    console.log(`Toggled ${approvalKey} approval for ${deliverableId}`);
+  // Save to localStorage whenever completed state changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(getStorageKey(project.id), JSON.stringify(completed));
+    } catch (e) {
+      console.error('Failed to save deliverable state to localStorage', e);
+    }
+  }, [completed, project.id]);
+
+  const toggleCompleted = (deliverableId: string) => {
+    setCompleted(prev => ({
+      ...prev,
+      [deliverableId]: !prev[deliverableId]
+    }));
   };
 
-  const getApprovalStatus = (deliverableId: string, key: keyof DeliverableApprovals): boolean => {
-    return approvals[deliverableId]?.[key] || project.deliverables?.[deliverableId]?.approvals?.[key] || false;
+  const isDeliverableCompleted = (deliverableId: string): boolean => {
+    return completed[deliverableId] || false;
   };
 
-  // Calculate phase completion
+  // Calculate phase completion based on checked deliverables
   const getPhaseStatus = (phase: typeof phases[0]) => {
     const applicableDeliverables = phase.deliverables.filter(d => {
       if (d.stages && project.stage && !d.stages.includes(project.stage)) return false;
@@ -172,14 +162,24 @@ export function DeliverableTimeline({ project }: DeliverableTimelineProps) {
 
     if (applicableDeliverables.length === 0) return 'empty';
 
-    const statuses = applicableDeliverables.map(d =>
-      project.deliverables?.[d.id]?.status || 'none'
-    );
+    const completedCount = applicableDeliverables.filter(d => isDeliverableCompleted(d.id)).length;
+    const total = applicableDeliverables.length;
 
-    if (statuses.every(s => s === 'green')) return 'complete';
-    if (statuses.some(s => s === 'red')) return 'attention';
-    if (statuses.some(s => s === 'yellow' || s === 'green')) return 'in-progress';
+    if (completedCount === total) return 'complete';
+    if (completedCount > 0) return 'in-progress';
     return 'pending';
+  };
+
+  // Calculate overall progress percentage
+  const getOverallProgress = () => {
+    const allDeliverables = phases.flatMap(phase =>
+      phase.deliverables.filter(d => {
+        if (d.stages && project.stage && !d.stages.includes(project.stage)) return false;
+        return true;
+      })
+    );
+    const completedCount = allDeliverables.filter(d => isDeliverableCompleted(d.id)).length;
+    return Math.round((completedCount / allDeliverables.length) * 100);
   };
 
   // Check if a design stage is complete (all phases in it are complete)
@@ -197,12 +197,17 @@ export function DeliverableTimeline({ project }: DeliverableTimelineProps) {
     return isDesignStageComplete(prevStage.id);
   };
 
+  const overallProgress = getOverallProgress();
+
   return (
     <div className="deliverable-timeline">
       <div className="timeline-header">
         <h2>Project Journey</h2>
         <div className="progress-summary">
-          <span className="progress-label">Semester Progress</span>
+          <span className="progress-label">Semester Progress: {overallProgress}%</span>
+          <div className="progress-bar-container">
+            <div className="progress-bar-fill" style={{ width: `${overallProgress}%` }} />
+          </div>
           <div className="progress-phases">
             {phases.map(phase => {
               const status = getPhaseStatus(phase);
@@ -275,15 +280,19 @@ export function DeliverableTimeline({ project }: DeliverableTimelineProps) {
                 <div className="phase-deliverables">
                   {applicableDeliverables.map(deliverable => {
                     const submission = project.deliverables?.[deliverable.id];
-                    const status = submission?.status || 'none';
-                    const statusInfo = statusConfig[status];
+                    const isChecked = isDeliverableCompleted(deliverable.id);
 
                     return (
-                      <div key={deliverable.id} className={`phase-deliverable ${statusInfo.className}`}>
-                        <span className={`deliverable-dot ${statusInfo.className}`}>
-                          {statusInfo.icon}
-                        </span>
-                        <span className="deliverable-label">
+                      <div key={deliverable.id} className={`phase-deliverable ${isChecked ? 'status-green' : 'status-none'}`}>
+                        <button
+                          type="button"
+                          className={`deliverable-checkbox ${isChecked ? 'checked' : ''}`}
+                          onClick={() => toggleCompleted(deliverable.id)}
+                          title={isChecked ? 'Mark as incomplete' : 'Mark as complete'}
+                        >
+                          {isChecked ? '✓' : '○'}
+                        </button>
+                        <span className={`deliverable-label ${isChecked ? 'completed' : ''}`}>
                           {submission?.url ? (
                             <a href={submission.url} target="_blank" rel="noopener noreferrer">
                               {deliverable.name}
@@ -292,25 +301,6 @@ export function DeliverableTimeline({ project }: DeliverableTimelineProps) {
                             deliverable.name
                           )}
                         </span>
-                        {deliverable.isTeam && (
-                          <span className="approval-checkboxes">
-                            {approvalLabels.map(({ key, label }) => {
-                              const isApproved = getApprovalStatus(deliverable.id, key);
-                              return (
-                                <button
-                                  key={key}
-                                  type="button"
-                                  className={`approval-box ${isApproved ? 'approved' : ''}`}
-                                  title={`${label}: ${isApproved ? 'Approved' : 'Click to approve'}`}
-                                  onClick={() => toggleApproval(deliverable.id, key)}
-                                >
-                                  {isApproved ? '✓' : ''}
-                                  <span className="approval-label">{label}</span>
-                                </button>
-                              );
-                            })}
-                          </span>
-                        )}
                       </div>
                     );
                   })}

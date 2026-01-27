@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getProjectById } from '../data/projects';
 import type { HealthStatus, Project } from '../types/project';
 import { DeliverableTimeline } from './DeliverableTimeline';
+import { StandupTracker } from './StandupTracker';
 import './ProjectLanding.css';
 
 const statusConfig: Record<HealthStatus, { label: string; className: string; icon: string }> = {
@@ -153,6 +154,9 @@ function ProjectLandingContent({
               <p>{editedDescription || project.description}</p>
             )}
           </div>
+
+          {/* Standup Tracker */}
+          <StandupTracker projectId={project.id} />
 
           {/* Journey Section - Always visible */}
           <DeliverableTimeline project={project} />
