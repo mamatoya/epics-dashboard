@@ -43,11 +43,13 @@ export function ProjectTile({ project }: ProjectTileProps) {
           <span className={`status-badge ${status.className}`}>
             <span className="status-icon">{status.icon}</span> {status.label}
           </span>
-          <span className="category-tag">{project.category}</span>
+          <div className="tile-header-right">
+            {project.pinned && <span className="pin-icon">📌</span>}
+            <span className="category-tag">{project.category}</span>
+          </div>
         </div>
 
         <h3 className="tile-title">{project.name}</h3>
-        <p className="tile-partner">{project.communityPartner}</p>
 
         {springInfo && (
           <div className="tile-metrics">

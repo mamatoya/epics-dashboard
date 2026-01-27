@@ -33,23 +33,12 @@ export function Layout() {
       <header className="main-header">
         <div className="header-content">
           <div className="logo-section">
-            <h1 className="logo">EPICS</h1>
-            <span className="logo-subtitle">Engineering Projects in Community Service</span>
+            <h1 className="logo">EPICS Dash</h1>
+            <span className="logo-subtitle">A course students take for applied industry experience, not a grade.</span>
           </div>
           <nav className="main-nav">
-            {/* Commented out for MVP scope
-            <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Feed
-            </NavLink>
-            */}
-            <NavLink to="/overview" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Overview
-            </NavLink>
             <NavLink to="/portfolio" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
               Projects
-            </NavLink>
-            <NavLink to="/update" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
-              Update
             </NavLink>
             <div className="dropdown" ref={dropdownRef}>
               <button
@@ -61,6 +50,21 @@ export function Layout() {
               </button>
               {dropdownOpen && (
                 <div className="dropdown-menu">
+                  <NavLink
+                    to="/overview"
+                    className="dropdown-item"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Overview
+                  </NavLink>
+                  <NavLink
+                    to="/update"
+                    className="dropdown-item"
+                    onClick={() => setDropdownOpen(false)}
+                  >
+                    Update
+                  </NavLink>
+                  <div className="dropdown-divider"></div>
                   {commonLinks.map((link, index) => (
                     <a
                       key={index}
@@ -82,9 +86,7 @@ export function Layout() {
       <main className="main-content">
         <Outlet />
       </main>
-      <footer className="main-footer">
-        <p>Last updated: December 4, 2024</p>
-      </footer>
+      <span className="last-updated-label">Last updated: January 26, 2026</span>
     </div>
   );
 }

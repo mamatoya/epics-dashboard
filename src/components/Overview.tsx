@@ -75,142 +75,140 @@ export function Overview() {
 
   const renderDashboard = () => (
     <>
-      <section className="stats-grid">
-        <div className="stat-card spring-continuing">
-          <span className="stat-value">{springCounts.continuing}</span>
-          <span className="stat-label">Continuing</span>
-        </div>
-        <div className="stat-card spring-delivering">
-          <span className="stat-value">{springCounts.delivering}</span>
-          <span className="stat-label">Delivering</span>
-        </div>
-        <div className="stat-card spring-not-continuing">
-          <span className="stat-value">{springCounts.notContinuing}</span>
-          <span className="stat-label">Not Continuing</span>
-        </div>
-        <div className="stat-card spring-revival">
-          <span className="stat-value">{springCounts.revivalNeeded}</span>
-          <span className="stat-label">Revival Needed</span>
-        </div>
-        {springCounts.unknown > 0 && (
-          <div className="stat-card spring-unknown">
-            <span className="stat-value">{springCounts.unknown}</span>
-            <span className="stat-label">TBD</span>
+      <section className="chart-section">
+        <h2>Impact</h2>
+        <div className="impact-grid">
+          <div className="impact-card">
+            <span className="impact-value">{hoursPerStudentPerSemester.toFixed(0)}</span>
+            <span className="impact-label">Hours/Student</span>
+            <span className="impact-detail">{programStats.minutesPerWeek} min/week × {programStats.weeksPerSemester} weeks</span>
           </div>
-        )}
+          <div className="impact-multiply">×</div>
+          <div className="impact-card">
+            <span className="impact-value">{programStats.totalStudents.toLocaleString()}</span>
+            <span className="impact-label">Students</span>
+            <span className="impact-detail">Enrolled this semester</span>
+          </div>
+          <div className="impact-multiply">=</div>
+          <div className="impact-card impact-total">
+            <span className="impact-value">{Math.round(totalProgramHours).toLocaleString()}</span>
+            <span className="impact-label">Total Program Hours</span>
+            <span className="impact-detail">Hands-on industry work</span>
+          </div>
+        </div>
+        <p className="impact-footnote">*This doesn't take into account skill sessions</p>
+        <div className="bar-chart">
+          {(Object.entries(categoryCounts) as [ProjectCategory, number][]).map(([category, count]) => (
+            <div key={category} className="bar-row">
+              <span className="bar-label">{category}</span>
+              <div className="bar-container">
+                <div
+                  className="bar"
+                  style={{
+                    width: `${(count / maxCategoryCount) * 100}%`,
+                    backgroundColor: categoryColors[category]
+                  }}
+                />
+                <span className="bar-value">{count}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <div className="charts-row">
-        <section className="chart-section">
-          <h2>Impact</h2>
-          <div className="impact-grid">
-            <div className="impact-card">
-              <span className="impact-value">{hoursPerStudentPerSemester.toFixed(0)}</span>
-              <span className="impact-label">Hours/Student</span>
-              <span className="impact-detail">{programStats.minutesPerWeek} min/week × {programStats.weeksPerSemester} weeks</span>
-            </div>
-            <div className="impact-multiply">×</div>
-            <div className="impact-card">
-              <span className="impact-value">{programStats.totalStudents.toLocaleString()}</span>
-              <span className="impact-label">Students</span>
-              <span className="impact-detail">Enrolled this semester</span>
-            </div>
-            <div className="impact-multiply">=</div>
-            <div className="impact-card impact-total">
-              <span className="impact-value">{Math.round(totalProgramHours).toLocaleString()}</span>
-              <span className="impact-label">Total Program Hours</span>
-              <span className="impact-detail">Hands-on industry work</span>
-            </div>
+      <section className="chart-section">
+        <h2>Program Health</h2>
+        <div className="status-grid">
+          <div className="status-card status-total">
+            <span className="status-value">{projects.length}</span>
+            <span className="status-label">Total</span>
           </div>
-          <div className="bar-chart">
-            {(Object.entries(categoryCounts) as [ProjectCategory, number][]).map(([category, count]) => (
-              <div key={category} className="bar-row">
-                <span className="bar-label">{category}</span>
-                <div className="bar-container">
-                  <div
-                    className="bar"
-                    style={{
-                      width: `${(count / maxCategoryCount) * 100}%`,
-                      backgroundColor: categoryColors[category]
-                    }}
-                  />
-                  <span className="bar-value">{count}</span>
-                </div>
-              </div>
-            ))}
+          <div className="status-card status-no-pulse">
+            <span className="status-value">{statusCounts['no-pulse']}</span>
+            <span className="status-label">No Pulse</span>
           </div>
-        </section>
-
-        <section className="chart-section">
-          <h2>Program Health</h2>
-          <div className="status-grid">
-            <div className="status-card status-no-pulse">
-              <span className="status-value">◌ {statusCounts['no-pulse']}</span>
-              <span className="status-label">No Pulse</span>
-            </div>
-            <div className="status-card status-on-track">
-              <span className="status-value">♥ {statusCounts['on-track']}</span>
-              <span className="status-label">On Track</span>
-            </div>
-            <div className="status-card status-at-risk">
-              <span className="status-value">♡ {statusCounts['at-risk']}</span>
-              <span className="status-label">At Risk</span>
-            </div>
-            <div className="status-card status-blocked">
-              <span className="status-value">✕ {statusCounts.blocked}</span>
-              <span className="status-label">Blocked</span>
-            </div>
-            <div className="status-card status-completed">
-              <span className="status-value">✓ {statusCounts.completed}</span>
-              <span className="status-label">Completed</span>
-            </div>
+          <div className="status-card status-on-track">
+            <span className="status-value">{statusCounts['on-track']}</span>
+            <span className="status-label">On Track</span>
           </div>
-          {designStats && (
-            <div className="design-review-inline">
-              <div className="average-score-inline">
-                <span className="average-value-inline">{(designStats.average * 100).toFixed(0)}%</span>
-                <span className="average-label-inline">Design Review Avg</span>
-              </div>
-              <div className="score-breakdown-inline">
-                <div className="score-item-inline score-excellent-bg">
-                  <span className="score-count-inline">{designStats.excellent}</span>
-                  <span className="score-label-inline">Excellent</span>
-                </div>
-                <div className="score-item-inline score-good-bg">
-                  <span className="score-count-inline">{designStats.good}</span>
-                  <span className="score-label-inline">Good</span>
-                </div>
-                <div className="score-item-inline score-adequate-bg">
-                  <span className="score-count-inline">{designStats.adequate}</span>
-                  <span className="score-label-inline">Adequate</span>
-                </div>
-                <div className="score-item-inline score-needs-bg">
-                  <span className="score-count-inline">{designStats.needsImprovement}</span>
-                  <span className="score-label-inline">Needs Work</span>
-                </div>
-              </div>
+          <div className="status-card status-at-risk">
+            <span className="status-value">{statusCounts['at-risk']}</span>
+            <span className="status-label">At Risk</span>
+          </div>
+          <div className="status-card status-blocked">
+            <span className="status-value">{statusCounts.blocked}</span>
+            <span className="status-label">Blocked</span>
+          </div>
+          <div className="status-card status-completed">
+            <span className="status-value">{statusCounts.completed}</span>
+            <span className="status-label">Completed</span>
+          </div>
+        </div>
+        <div className="spring-status-grid">
+          <div className="spring-card spring-continuing">
+            <span className="spring-value">{springCounts.continuing}</span>
+            <span className="spring-label">Continuing</span>
+          </div>
+          <div className="spring-card spring-delivering">
+            <span className="spring-value">{springCounts.delivering}</span>
+            <span className="spring-label">Delivering</span>
+          </div>
+          <div className="spring-card spring-not-continuing">
+            <span className="spring-value">{springCounts.notContinuing}</span>
+            <span className="spring-label">Not Continuing</span>
+          </div>
+          <div className="spring-card spring-revival">
+            <span className="spring-value">{springCounts.revivalNeeded}</span>
+            <span className="spring-label">Revival Needed</span>
+          </div>
+          {springCounts.unknown > 0 && (
+            <div className="spring-card spring-unknown">
+              <span className="spring-value">{springCounts.unknown}</span>
+              <span className="spring-label">TBD</span>
             </div>
           )}
-          <div className="program-stats-grid">
-            <div className="program-stat-card">
-              <span className="program-stat-value">{projects.length}</span>
-              <span className="program-stat-label">Active Projects</span>
+        </div>
+        {designStats && (
+          <div className="design-review-inline">
+            <div className="average-score-inline">
+              <span className="average-value-inline">{(designStats.average * 100).toFixed(0)}%</span>
+              <span className="average-label-inline">Design Review Avg</span>
             </div>
-            <div className="program-stat-card">
-              <span className="program-stat-value">{programStats.totalStudents}</span>
-              <span className="program-stat-label">Students Enrolled</span>
-            </div>
-            <div className="program-stat-card">
-              <span className="program-stat-value">{programStats.instructors}</span>
-              <span className="program-stat-label">Portfolio Managers</span>
-            </div>
-            <div className="program-stat-card">
-              <span className="program-stat-value">{programStats.industryMentors}</span>
-              <span className="program-stat-label">Industry Mentors</span>
+            <div className="score-breakdown-inline">
+              <div className="score-item-inline score-excellent-bg">
+                <span className="score-count-inline">{designStats.excellent}</span>
+                <span className="score-label-inline">Excellent</span>
+              </div>
+              <div className="score-item-inline score-good-bg">
+                <span className="score-count-inline">{designStats.good}</span>
+                <span className="score-label-inline">Good</span>
+              </div>
+              <div className="score-item-inline score-adequate-bg">
+                <span className="score-count-inline">{designStats.adequate}</span>
+                <span className="score-label-inline">Adequate</span>
+              </div>
+              <div className="score-item-inline score-needs-bg">
+                <span className="score-count-inline">{designStats.needsImprovement}</span>
+                <span className="score-label-inline">Needs Work</span>
+              </div>
             </div>
           </div>
-        </section>
-      </div>
+        )}
+        <div className="program-stats-grid">
+          <div className="program-stat-card">
+            <span className="program-stat-value">{programStats.totalStudents}</span>
+            <span className="program-stat-label">Students Enrolled</span>
+          </div>
+          <div className="program-stat-card">
+            <span className="program-stat-value">{programStats.instructors}</span>
+            <span className="program-stat-label">Portfolio Managers</span>
+          </div>
+          <div className="program-stat-card">
+            <span className="program-stat-value">{programStats.industryMentors}</span>
+            <span className="program-stat-label">Industry Mentors</span>
+          </div>
+        </div>
+      </section>
     </>
   );
 

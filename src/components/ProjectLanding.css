@@ -1135,6 +1135,88 @@
   }
 }
 
+@media (max-width: 768px) {
+  /* Hide the hover sidebar on mobile - it doesn't work well with touch */
+  .sidebar-container {
+    display: none;
+  }
+
+  .breadcrumb {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .project-header {
+    padding: 1.5rem 1rem;
+  }
+
+  .header-top {
+    gap: 0.5rem;
+  }
+
+  .project-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .community-partner {
+    font-size: 1rem;
+  }
+
+  .status-badge,
+  .category-tag,
+  .semester-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .project-content {
+    padding: 1rem;
+  }
+
+  .section-card {
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-card h2 {
+    font-size: 1.1rem;
+  }
+
+  .section-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .deliverables-legend {
+    gap: 1rem;
+  }
+
+  .legend-item {
+    font-size: 0.75rem;
+  }
+
+  .deliverable-row {
+    padding: 0.6rem;
+  }
+
+  .deliverable-name {
+    font-size: 0.85rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .quick-links-bar {
+    padding: 0.75rem 1rem;
+    gap: 1rem;
+  }
+
+  .quick-link-item {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
 @media (max-width: 500px) {
   .project-landing .section-tiles {
     grid-template-columns: repeat(2, 1fr);
@@ -1151,6 +1233,155 @@
 
   .project-landing .tile-label {
     font-size: 0.75rem;
+  }
+
+  .breadcrumb {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .project-header {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .project-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .community-partner {
+    font-size: 0.9rem;
+  }
+
+  .project-content {
+    padding: 0.75rem;
+  }
+
+  .section-card {
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .section-card h2 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .section-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .edit-btn,
+  .upload-btn {
+    padding: 0.35rem 0.65rem;
+    font-size: 0.75rem;
+  }
+
+  .deliverables-legend {
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legend-item {
+    font-size: 0.7rem;
+  }
+
+  .deliverable-row {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .deliverable-status {
+    font-size: 0.9rem;
+    min-width: 20px;
+  }
+
+  .deliverable-name {
+    font-size: 0.8rem;
+  }
+
+  .team-badge,
+  .stage-badge {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.3rem;
+  }
+
+  .deliverable-due {
+    font-size: 0.7rem;
+  }
+
+  /* Quick links responsive */
+  .quick-links-bar {
+    padding: 0.6rem 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .quick-link-label {
+    font-size: 0.8rem;
+  }
+
+  .quick-link-btn {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .link-input {
+    width: 150px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .breadcrumb {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .project-header {
+    padding: 1rem 0.5rem;
+  }
+
+  .project-header h1 {
+    font-size: 1.15rem;
+  }
+
+  .community-partner {
+    font-size: 0.85rem;
+  }
+
+  .project-content {
+    padding: 0.5rem;
+  }
+
+  .section-card {
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-card h2 {
+    font-size: 0.95rem;
+  }
+
+  .project-landing .section-tiles {
+    gap: 0.5rem;
+  }
+
+  .project-landing .section-tile {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .project-landing .tile-icon {
+    font-size: 1.25rem;
+  }
+
+  .project-landing .tile-label {
+    font-size: 0.65rem;
+  }
+
+  .quick-links-bar {
+    padding: 0.5rem;
   }
 }
 

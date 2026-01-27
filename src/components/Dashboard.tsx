@@ -3,59 +3,18 @@ import { projects } from '../data/projects';
 import { ProjectTile } from './ProjectTile';
 import './Dashboard.css';
 
-const statusFilters = [
-  { value: 'all', label: 'All Projects' },
-  { value: 'no-pulse', label: 'No Pulse' },
-  { value: 'on-track', label: 'On Track' },
-  { value: 'at-risk', label: 'At Risk' },
-  { value: 'blocked', label: 'Blocked' },
-  { value: 'completed', label: 'Completed' }
-];
-
-const springStatusFilters = [
-  { value: 'all', label: 'All Spring Status' },
-  { value: 'continuing', label: 'Continuing' },
-  { value: 'delivering', label: 'Delivering' },
-  { value: 'not-continuing', label: 'Not Continuing' },
-  { value: 'revival', label: 'Revival Needed' }
-];
-
-// Helper to determine spring status category
-function getSpringStatusCategory(springStatus?: string): string {
-  if (!springStatus) return 'unknown';
-  const status = springStatus.toLowerCase();
-  if (status.includes('delivering')) return 'delivering';
-  if (status.includes('not continuing')) {
-    if (status.includes('revival')) return 'revival';
-    return 'not-continuing';
-  }
-  if (status.includes('monday') || status.includes('tuesday') || status.includes('wednesday') || status.includes('thursday')) {
-    return 'continuing';
-  }
-  return 'unknown';
-}
-
 export function Dashboard() {
-  const [statusFilter, setStatusFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState<string>('all');
-  const [springFilter, setSpringFilter] = useState<string>('all');
-
-  const categories = useMemo(() => {
-    const cats = new Set(projects.map(p => p.category));
-    return ['all', ...Array.from(cats).sort()];
-  }, []);
+  const [showPinnedOnly, setShowPinnedOnly] = useState(false);
 
   const filteredProjects = useMemo(() => {
     const filtered = projects.filter(project => {
-      const matchesStatus = statusFilter === 'all' || project.healthStatus === statusFilter;
-      const matchesCategory = categoryFilter === 'all' || project.category === categoryFilter;
       const matchesSearch = searchQuery === '' ||
         project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.communityPartner.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesSpring = springFilter === 'all' || getSpringStatusCategory(project.springStatus) === springFilter;
+      const matchesPinned = !showPinnedOnly || project.pinned;
 
-      return matchesStatus && matchesCategory && matchesSearch && matchesSpring;
+      return matchesSearch && matchesPinned;
     });
     // Sort pinned projects to the top
     return filtered.sort((a, b) => {
@@ -63,48 +22,10 @@ export function Dashboard() {
       if (!a.pinned && b.pinned) return 1;
       return 0;
     });
-  }, [statusFilter, categoryFilter, searchQuery, springFilter]);
-
-  const statusCounts = useMemo(() => {
-    return {
-      total: projects.length,
-      'no-pulse': projects.filter(p => p.healthStatus === 'no-pulse').length,
-      'on-track': projects.filter(p => p.healthStatus === 'on-track').length,
-      'at-risk': projects.filter(p => p.healthStatus === 'at-risk').length,
-      blocked: projects.filter(p => p.healthStatus === 'blocked').length,
-      completed: projects.filter(p => p.healthStatus === 'completed').length
-    };
-  }, []);
+  }, [searchQuery, showPinnedOnly]);
 
   return (
     <div className="dashboard">
-      <div className="stats-bar">
-        <div className="stat-item">
-          <span className="stat-number">{statusCounts.total}</span>
-          <span className="stat-label">Total Projects</span>
-        </div>
-        <div className="stat-item stat-no-pulse">
-          <span className="stat-number">{statusCounts['no-pulse']}</span>
-          <span className="stat-label">No Pulse</span>
-        </div>
-        <div className="stat-item stat-on-track">
-          <span className="stat-number">{statusCounts['on-track']}</span>
-          <span className="stat-label">On Track</span>
-        </div>
-        <div className="stat-item stat-at-risk">
-          <span className="stat-number">{statusCounts['at-risk']}</span>
-          <span className="stat-label">At Risk</span>
-        </div>
-        <div className="stat-item stat-blocked">
-          <span className="stat-number">{statusCounts.blocked}</span>
-          <span className="stat-label">Blocked</span>
-        </div>
-        <div className="stat-item stat-completed">
-          <span className="stat-number">{statusCounts.completed}</span>
-          <span className="stat-label">Completed</span>
-        </div>
-      </div>
-
       <div className="filters-bar">
         <input
           type="text"
@@ -114,41 +35,14 @@ export function Dashboard() {
           className="search-input"
         />
 
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="filter-select"
-        >
-          {statusFilters.map(filter => (
-            <option key={filter.value} value={filter.value}>
-              {filter.label}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={categoryFilter}
-          onChange={(e) => setCategoryFilter(e.target.value)}
-          className="filter-select"
-        >
-          {categories.map(cat => (
-            <option key={cat} value={cat}>
-              {cat === 'all' ? 'All Categories' : cat}
-            </option>
-          ))}
-        </select>
-
-        <select
-          value={springFilter}
-          onChange={(e) => setSpringFilter(e.target.value)}
-          className="filter-select"
-        >
-          {springStatusFilters.map(filter => (
-            <option key={filter.value} value={filter.value}>
-              {filter.label}
-            </option>
-          ))}
-        </select>
+        <label className="pinned-toggle">
+          <input
+            type="checkbox"
+            checked={showPinnedOnly}
+            onChange={(e) => setShowPinnedOnly(e.target.checked)}
+          />
+          <span className="toggle-label">My Teams</span>
+        </label>
       </div>
 
       <div className="projects-grid">

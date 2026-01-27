@@ -487,3 +487,17 @@
     width: fit-content;
   }
 }
+
+/* Easter egg */
+.easter-egg {
+  display: inline-block;
+  font-size: 0.75rem;
+  opacity: 0.3;
+  text-decoration: none;
+  margin-left: 0.25rem;
+  transition: opacity 0.2s;
+}
+
+.easter-egg:hover {
+  opacity: 1;
+}

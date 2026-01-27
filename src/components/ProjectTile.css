@@ -67,6 +67,16 @@
   font-size: 0.85em;
 }
 
+.tile-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pin-icon {
+  font-size: 0.85rem;
+}
+
 .category-tag {
   font-size: 0.7rem;
   color: var(--gray-500);
@@ -215,4 +225,130 @@
 .spring-revival {
   background: rgba(255, 198, 39, 0.2);
   color: #9a6700;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 600px) {
+  .tile-link {
+    padding: 1rem;
+  }
+
+  .tile-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .status-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .category-tag {
+    font-size: 0.65rem;
+  }
+
+  .tile-title {
+    font-size: 0.95rem;
+  }
+
+  .tile-partner {
+    font-size: 0.8rem;
+  }
+
+  .tile-metrics {
+    gap: 0.35rem;
+  }
+
+  .design-score-badge,
+  .spring-status-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .blockers-preview {
+    font-size: 0.75rem;
+    padding: 0.4rem;
+  }
+
+  .tile-footer {
+    padding: 0.6rem 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .onedrive-link {
+    font-size: 0.75rem;
+  }
+
+  .last-updated {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .project-tile {
+    border-radius: 10px;
+  }
+
+  .tile-link {
+    padding: 0.75rem;
+  }
+
+  .tile-header {
+    margin-bottom: 0.5rem;
+  }
+
+  .status-badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  .category-tag {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .tile-title {
+    font-size: 0.85rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .tile-partner {
+    font-size: 0.75rem;
+  }
+
+  .tile-metrics {
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .design-score-badge,
+  .spring-status-badge {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.35rem;
+  }
+
+  .blockers-preview {
+    font-size: 0.7rem;
+    padding: 0.35rem;
+    margin-top: 0.5rem;
+  }
+
+  .blocker-icon {
+    width: 16px;
+    height: 16px;
+    font-size: 0.6rem;
+  }
+
+  .tile-footer {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .onedrive-link {
+    font-size: 0.7rem;
+  }
+
+  .last-updated {
+    font-size: 0.65rem;
+  }
 }

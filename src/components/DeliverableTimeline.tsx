@@ -276,6 +276,17 @@ export function DeliverableTimeline({ project }: DeliverableTimelineProps) {
                   <span className="phase-week">Week {phase.week}</span>
                 </div>
                 <p className="phase-description">{phase.description}</p>
+                {index === 0 && project.id === 'food-web-food' && (
+                  <a
+                    href="https://www.youtube.com/watch?v=s88r_q7oufE"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="easter-egg"
+                    title="🎵"
+                  >
+                    🌱
+                  </a>
+                )}
 
                 <div className="phase-deliverables">
                   {applicableDeliverables.map(deliverable => {

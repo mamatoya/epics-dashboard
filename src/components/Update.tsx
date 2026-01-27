@@ -1,6 +1,118 @@
 import { useState, useRef } from 'react';
 import './Update.css';
 
+// CSV column headers - Excel-friendly names
+const CSV_COLUMNS = [
+  'Project Name',
+  'Description',
+  'Category',
+  'Community Partner',
+  'Campus',
+  'Portfolio Manager',
+  'Industry Mentor',
+  'Health Status',
+  'Spring Status',
+  'Stage',
+  'Meeting Day',
+  'Meeting Time',
+  'OneDrive URL',
+  'Design Review Score',
+  'People Impacted',
+  'Is Indonesia Project',
+  'My Team',
+];
+
+// Generate CSV template with headers and example rows
+const generateTemplate = () => {
+  const headers = CSV_COLUMNS.join(',');
+
+  // Example rows showing different scenarios
+  const examples = [
+    [
+      'Solar Powered Cold Chain',
+      'Developing solar-powered cold chain solutions for preserving temperature-sensitive goods',
+      'Sustainability',
+      'Community Food Bank',
+      'Tempe',
+      'Dr. Smith',
+      'Jane Doe',
+      'on-track',
+      'Monday 4:00-5:15pm',
+      '2',
+      'Monday',
+      '4:00-5:15pm',
+      'https://arizonastateu-my.sharepoint.com/...',
+      '0.85',
+      '250',
+      'No',
+      'Yes',
+    ],
+    [
+      'Adaptive Snowboard',
+      'Developing adaptive snowboard system with integrated suspension',
+      'Health',
+      'Zach Sherman',
+      'Tempe',
+      'Dr. Jones',
+      '',
+      'on-track',
+      'Wednesday 4:35-5:25pm',
+      '3',
+      'Wednesday',
+      '4:35-5:25pm',
+      '',
+      '1.0',
+      '1',
+      'No',
+      'No',
+    ],
+    [
+      'Indonesia Hand Solutions',
+      'Developing adaptive hand prosthetic solutions for communities in Indonesia',
+      'Health',
+      'Indonesia Healthcare Partners',
+      'Tempe',
+      '',
+      '',
+      'no-pulse',
+      'Not Continuing',
+      '1',
+      '',
+      '',
+      '',
+      '',
+      '500',
+      'Yes',
+      'No',
+    ],
+  ];
+
+  const exampleRows = examples.map(row =>
+    row.map(cell => {
+      // Wrap cells containing commas in quotes
+      if (cell.includes(',') || cell.includes('"')) {
+        return `"${cell.replace(/"/g, '""')}"`;
+      }
+      return cell;
+    }).join(',')
+  ).join('\n');
+
+  return `${headers}\n${exampleRows}`;
+};
+
+const downloadTemplate = () => {
+  const template = generateTemplate();
+  const blob = new Blob([template], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'epics_project_template.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+};
+
 export function Update() {
   const [file, setFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
@@ -103,25 +215,68 @@ export function Update() {
         </div>
 
         <div className="upload-info">
-          <h3>Expected CSV Format</h3>
-          <p>Your CSV file should include the following columns:</p>
-          <ul className="format-list">
-            <li><strong>Project Name</strong> - Name of the project</li>
-            <li><strong>Description</strong> - Project description</li>
-            <li><strong>Category</strong> - Community Development, Education, Health, or Sustainability</li>
-            <li><strong>Community Partner</strong> - Partner organization name</li>
-            <li><strong>Portfolio Manager</strong> - Assigned instructor</li>
-            <li><strong>Industry Mentor</strong> - Industry mentor name</li>
-            <li><strong>Health Status</strong> - no-pulse, on-track, at-risk, blocked, or completed</li>
-            <li><strong>Spring Status</strong> - Status for spring semester</li>
-            <li><strong>Team Members</strong> - Comma-separated list of team members</li>
-          </ul>
+          <h3>CSV Column Guide</h3>
+          <p className="format-intro">
+            Download the template below and fill it out in Excel. Save as CSV when done.
+          </p>
 
           <div className="template-download">
-            <p>Need a template?</p>
-            <button className="template-btn" onClick={() => alert('Template download coming soon!')}>
+            <button className="template-btn" onClick={downloadTemplate}>
               Download CSV Template
             </button>
+          </div>
+
+          <div className="format-sections">
+            <div className="format-section">
+              <h4>Required Fields</h4>
+              <ul className="format-list">
+                <li><strong>Project Name</strong> - Full name of the project</li>
+                <li><strong>Category</strong> - One of: Community Development, Education, Health, Sustainability</li>
+                <li><strong>Health Status</strong> - One of: no-pulse, on-track, at-risk, blocked, completed</li>
+              </ul>
+            </div>
+
+            <div className="format-section">
+              <h4>Project Details</h4>
+              <ul className="format-list">
+                <li><strong>Description</strong> - Brief project description</li>
+                <li><strong>Community Partner</strong> - Partner organization name</li>
+                <li><strong>Campus</strong> - One of: Tempe, Polytechnic, West Valley</li>
+                <li><strong>Stage</strong> - Project stage: 1, 2, or 3</li>
+                <li><strong>People Impacted</strong> - Estimated number (just the number)</li>
+              </ul>
+            </div>
+
+            <div className="format-section">
+              <h4>Team & Schedule</h4>
+              <ul className="format-list">
+                <li><strong>Portfolio Manager</strong> - Assigned instructor name</li>
+                <li><strong>Industry Mentor</strong> - Industry mentor name</li>
+                <li><strong>Meeting Day</strong> - Monday, Tuesday, Wednesday, etc.</li>
+                <li><strong>Meeting Time</strong> - e.g., 4:00-5:15pm</li>
+                <li><strong>Spring Status</strong> - e.g., "Monday 4:00-5:15pm" or "Not Continuing"</li>
+              </ul>
+            </div>
+
+            <div className="format-section">
+              <h4>Other Fields</h4>
+              <ul className="format-list">
+                <li><strong>OneDrive URL</strong> - Full URL to project folder</li>
+                <li><strong>Design Review Score</strong> - Decimal 0 to 1 (e.g., 0.85 for 85%)</li>
+                <li><strong>Is Indonesia Project</strong> - Yes or No</li>
+                <li><strong>My Team</strong> - Yes or No (marks as your team)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="format-tips">
+            <h4>Tips for Excel Users</h4>
+            <ul className="tips-list">
+              <li>Open the template in Excel, make your changes, then File → Save As → CSV</li>
+              <li>Leave cells empty if you don't have the data - don't put "N/A" or "-"</li>
+              <li>For Yes/No fields, use exactly "Yes" or "No"</li>
+              <li>Don't change the column headers in the first row</li>
+            </ul>
           </div>
         </div>
       </div>
