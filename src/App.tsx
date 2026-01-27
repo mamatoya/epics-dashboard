@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Navigate to="/overview" replace />} />
+          <Route index element={<Navigate to="/portfolio" replace />} />
           {/* <Route path="feed" element={<Feed />} /> */}
           <Route path="overview" element={<Overview />} />
           <Route path="portfolio" element={<Dashboard />} />
