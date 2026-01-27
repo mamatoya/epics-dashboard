@@ -222,7 +222,8 @@ export const projects: Project[] = [
     campus: 'Tempe',
     springStatus: 'Monday 5:30-6:45pm',
     designReviewScore: 1.0,
-    peopleImpacted: 2500
+    peopleImpacted: 2500,
+    pinned: true
   },
   {
     id: 'personal-protective-equipment-ppe',
