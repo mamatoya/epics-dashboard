@@ -337,7 +337,8 @@ export const projects: Project[] = [
     category: 'Health',
     campus: 'Tempe',
     springStatus: 'Monday 7:00-8:15pm',
-    designReviewScore: 0.5
+    designReviewScore: 0.5,
+    pinned: true
   },
   {
     id: 'food-web-food',
@@ -356,7 +357,8 @@ export const projects: Project[] = [
     category: 'Sustainability',
     campus: 'Tempe',
     springStatus: 'Monday 7:00-8:15pm',
-    designReviewScore: 0.75
+    designReviewScore: 0.75,
+    pinned: true
   },
   {
     id: 'indonesia-adaptive-hand-solutions',
