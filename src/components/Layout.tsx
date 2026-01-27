@@ -8,8 +8,8 @@ const commonLinks = [
     url: 'https://arizonastateu-my.sharepoint.com/shared?id=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments%2FEPICS%20Master%20Folder&listurl=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments'
   },
   {
-    label: 'Fall 2025 All Info Sheet',
-    url: 'https://arizonastateu-my.sharepoint.com/:x:/r/personal/jjschoep_asurite_asu_edu/_layouts/15/Doc.aspx?sourcedoc=%7BE72DE982-FE95-476C-9C46-982E6214C58A%7D&file=Fall%202025%20All%20Info%20Sheet.xlsx&fromShare=true&action=default&mobileredirect=true'
+    label: 'Spring 2026 All Info Sheet',
+    url: 'https://arizonastateu-my.sharepoint.com/:x:/r/personal/jjschoep_asurite_asu_edu/_layouts/15/Doc.aspx?sourcedoc=%7BE592953E-8079-4D37-AF83-631907970987%7D&file=Spring%202026%20All%20Info%20Sheet.xlsx&action=default&mobileredirect=true'
   }
 ];
 
@@ -37,14 +37,19 @@ export function Layout() {
             <span className="logo-subtitle">Engineering Projects in Community Service</span>
           </div>
           <nav className="main-nav">
+            {/* Commented out for MVP scope
             <NavLink to="/" end className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
               Feed
             </NavLink>
+            */}
             <NavLink to="/overview" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
               Overview
             </NavLink>
             <NavLink to="/portfolio" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
               Projects
+            </NavLink>
+            <NavLink to="/update" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              Update
             </NavLink>
             <div className="dropdown" ref={dropdownRef}>
               <button

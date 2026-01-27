@@ -198,13 +198,13 @@ function getDesignReviewStats() {
   return { average, excellent, good, adequate, needsImprovement, total: projectsWithScores.length };
 }
 
-// Tab configuration
+// Tab configuration - Commented out for MVP scope since only Dashboard is shown
 const tabConfig: { id: OverviewTab; label: string; icon: string }[] = [
-  { id: 'dashboard', label: 'Dashboard', icon: '📊' },
-  { id: 'feed', label: 'EPICS Feed', icon: '📰' },
-  { id: 'skills', label: 'Skill Sessions', icon: '🎯' },
-  { id: 'partnerships', label: 'Partnerships', icon: '🤝' },
-  { id: 'reports', label: 'Reports', icon: '📋' },
+  // { id: 'dashboard', label: 'Dashboard', icon: '📊' },
+  // { id: 'feed', label: 'EPICS Feed', icon: '📰' },
+  // { id: 'skills', label: 'Skill Sessions', icon: '🎯' },
+  // { id: 'partnerships', label: 'Partnerships', icon: '🤝' },
+  // { id: 'reports', label: 'Reports', icon: '📋' },
 ];
 
 const feedTypeConfig: Record<FeedItem['type'], { icon: string; color: string; label: string }> = {
@@ -409,40 +409,6 @@ export function Overview() {
           </div>
         </section>
       </div>
-
-      <section className="info-section">
-        <h2>Program Team</h2>
-        <div className="team-grid">
-          <OrgChartTile />
-          <div className="team-card">
-            <h3>Faculty & Instructors</h3>
-            <ul>
-              <li>Jared Schoepf</li>
-              <li>Jenny Wong</li>
-              <li>Amanda Minutello</li>
-              <li>Daniel Frank</li>
-              <li>Adwith Malpe</li>
-              <li>Michael King</li>
-            </ul>
-          </div>
-          <div className="team-card">
-            <h3>Course Offerings</h3>
-            <ul>
-              <li><strong>FSE 104:</strong> EPICS Gold Feasibility and Planning (1 credit)</li>
-              <li><strong>FSE 404:</strong> EPICS Gold: EPICS in Action (1-2 credits)</li>
-              <li><strong>FSE 492:</strong> EPICS Accelerator (1-6 credits)</li>
-            </ul>
-          </div>
-          <div className="team-card">
-            <h3>Campuses</h3>
-            <ul>
-              <li>Tempe Campus</li>
-              <li>Polytechnic Campus</li>
-              <li>West Valley Campus</li>
-            </ul>
-          </div>
-        </div>
-      </section>
     </>
   );
 
@@ -685,6 +651,7 @@ export function Overview() {
 
   return (
     <div className="overview">
+      {/* Tabs - Commented out for MVP scope since only Dashboard is shown
       <div className="overview-tabs">
         {tabConfig.map(tab => (
           <button
@@ -697,13 +664,16 @@ export function Overview() {
           </button>
         ))}
       </div>
+      */}
 
       <div className="tab-content">
-        {activeTab === 'dashboard' && renderDashboard()}
+        {renderDashboard()}
+        {/* Commented out for MVP scope
         {activeTab === 'feed' && renderFeed()}
         {activeTab === 'skills' && renderSkillSessions()}
         {activeTab === 'partnerships' && renderPartnerships()}
         {activeTab === 'reports' && renderReports()}
+        */}
       </div>
     </div>
   );

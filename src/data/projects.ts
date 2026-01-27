@@ -6,6 +6,24 @@ import type { Project, ProjectCategory } from '../types/project';
 
 export const projects: Project[] = [
   {
+    id: 'solar-powered-cold-chain',
+    name: 'Solar Powered Cold Chain',
+    description: 'Developing solar-powered cold chain solutions for preserving temperature-sensitive goods in areas with limited electricity access.',
+    communityPartner: '',
+    teamMembers: [],
+    portfolioManager: '',
+    industryMentor: '',
+    healthStatus: 'on-track',
+    blockers: [],
+    oneDriveUrl: 'https://arizonastateu-my.sharepoint.com/shared?id=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments%2FEPICS%20Master%20Folder%2FEPICS%20Team%20Folder%2FSolar%20Powered%20ColdChain%2FSpring%202026&listurl=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments',
+    media: [],
+    lastUpdated: '2025-01-26',
+    semester: 'Spring 2025',
+    category: 'Sustainability',
+    campus: 'Tempe',
+    pinned: true
+  },
+  {
     id: 'adaptive-snowboard',
     name: 'Adaptive Snowboard',
     description: 'Developing an adaptive snowboard system with integrated suspension technology for Zach Sherman, a bilateral double above-the-knee amputee. The team aims to modify the snowboard and bindings by incorporating suspension to replicate knee joint function and reduce shock absorption, alleviating hip and back pain during use.',
@@ -98,14 +116,15 @@ export const projects: Project[] = [
     industryMentor: '',
     healthStatus: 'on-track',
     blockers: [],
-    oneDriveUrl: '',
+    oneDriveUrl: 'https://arizonastateu-my.sharepoint.com/shared?id=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments%2FEPICS%20Master%20Folder%2FEPICS%20Team%20Folder%2FMonkey%20Enrichment%2FSpring%202026&listurl=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments&wa=wsignin1%2E0',
     media: [],
     lastUpdated: '2024-12-03',
     semester: 'Fall 2024',
     category: 'Sustainability',
     campus: 'Tempe',
     meetingTime: { day: 'Monday', time: '3:05-3:55p' },
-    springStatus: 'Monday 4:00-5:15pm (Might be delivering)'
+    springStatus: 'Monday 4:00-5:15pm (Might be delivering)',
+    pinned: true
   },
   {
     id: 'adaptive-sports',

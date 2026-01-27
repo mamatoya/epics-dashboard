@@ -602,7 +602,7 @@ function ProjectLandingContent({
 
       <div className="project-content">
         <section className="main-content">
-          {/* Section Tiles */}
+          {/* Section Tiles - Commented out for MVP scope
           <div className="section-tiles">
             <button
               className={`section-tile ${activeSection === 'description' ? 'active' : ''}`}
@@ -633,48 +633,48 @@ function ProjectLandingContent({
               <span className="tile-label">Mentoring</span>
             </button>
           </div>
+          */}
 
-          {/* Expandable Sections */}
-          <div className={`expandable-section ${activeSection === 'description' ? 'expanded' : ''}`}>
-            {activeSection === 'description' && (
-              <div className="section-card">
-                <div className="section-header">
-                  <h2>Description</h2>
-                  {!isEditingDescription && (
-                    <button
-                      className="edit-btn"
-                      onClick={() => setIsEditingDescription(true)}
-                    >
-                      Edit
-                    </button>
-                  )}
+          {/* Description Section - Always visible */}
+          <div className="section-card">
+            <div className="section-header">
+              <h2>Description</h2>
+              {!isEditingDescription && (
+                <button
+                  className="edit-btn"
+                  onClick={() => setIsEditingDescription(true)}
+                >
+                  Edit
+                </button>
+              )}
+            </div>
+            {isEditingDescription ? (
+              <div className="edit-description">
+                <textarea
+                  value={editedDescription}
+                  onChange={(e) => setEditedDescription(e.target.value)}
+                  rows={6}
+                  placeholder="Enter project description..."
+                />
+                <div className="edit-actions">
+                  <button className="save-btn" onClick={handleSaveDescription}>Save</button>
+                  <button className="cancel-btn" onClick={handleCancelEdit}>Cancel</button>
                 </div>
-                {isEditingDescription ? (
-                  <div className="edit-description">
-                    <textarea
-                      value={editedDescription}
-                      onChange={(e) => setEditedDescription(e.target.value)}
-                      rows={6}
-                      placeholder="Enter project description..."
-                    />
-                    <div className="edit-actions">
-                      <button className="save-btn" onClick={handleSaveDescription}>Save</button>
-                      <button className="cancel-btn" onClick={handleCancelEdit}>Cancel</button>
-                    </div>
-                  </div>
-                ) : (
-                  <p>{editedDescription || project.description}</p>
-                )}
               </div>
+            ) : (
+              <p>{editedDescription || project.description}</p>
             )}
           </div>
 
+          {/* Journey Section - Always visible */}
+          <DeliverableTimeline project={project} />
+
+          {/* Feed and Mentoring sections - Commented out for MVP scope
           <div className={`expandable-section ${activeSection === 'feed' ? 'expanded' : ''}`}>
             {activeSection === 'feed' && (
               <div className="section-card feed-section">
                 <h2>Team Feed</h2>
 
-                {/* New Post Composer */}
                 <div className="feed-composer">
                   <div className="composer-input-area">
                     <textarea
@@ -729,7 +729,6 @@ function ProjectLandingContent({
                   </div>
                 </div>
 
-                {/* Feed Posts */}
                 <div className="feed-posts">
                   {feedPosts.map(post => (
                     <div key={post.id} className="feed-post">
@@ -787,17 +786,12 @@ function ProjectLandingContent({
             )}
           </div>
 
-          <div className={`expandable-section ${activeSection === 'journey' ? 'expanded' : ''}`}>
-            {activeSection === 'journey' && (
-              <DeliverableTimeline project={project} />
-            )}
-          </div>
-
           <div className={`expandable-section ${activeSection === 'mentoring' ? 'expanded' : ''}`}>
             {activeSection === 'mentoring' && (
               <MentoringSection project={project} />
             )}
           </div>
+          */}
         </section>
 
         {/* Slide-out sidebar */}

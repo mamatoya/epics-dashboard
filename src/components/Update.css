@@ -1,0 +1,196 @@
+.update-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.update-container h1 {
+  color: var(--asu-maroon);
+  margin-bottom: 0.5rem;
+}
+
+.update-description {
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.upload-zone {
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #fafafa;
+}
+
+.upload-zone:hover {
+  border-color: var(--asu-gold);
+  background: #fff8e6;
+}
+
+.upload-zone.drag-active {
+  border-color: var(--asu-gold);
+  background: #fff8e6;
+  transform: scale(1.01);
+}
+
+.upload-zone.has-file {
+  border-color: var(--asu-green);
+  background: #f0fff4;
+  border-style: solid;
+}
+
+.upload-prompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.upload-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.upload-text {
+  font-size: 1.1rem;
+  color: #333;
+  margin: 0;
+}
+
+.upload-subtext {
+  font-size: 0.9rem;
+  color: #888;
+  margin: 0;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.file-icon {
+  font-size: 2rem;
+}
+
+.file-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.file-size {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.upload-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+.upload-btn {
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.upload-btn.primary {
+  background: var(--asu-maroon);
+  color: white;
+}
+
+.upload-btn.primary:hover:not(:disabled) {
+  background: #6a0028;
+}
+
+.upload-btn.primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.upload-btn.secondary {
+  background: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.upload-btn.secondary:hover {
+  background: #e0e0e0;
+}
+
+.upload-info {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.upload-info h3 {
+  color: var(--asu-maroon);
+  margin-bottom: 0.5rem;
+}
+
+.upload-info > p {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.format-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.5rem;
+}
+
+.format-list li {
+  padding: 0.5rem 0.75rem;
+  background: white;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.format-list li strong {
+  color: #333;
+}
+
+.template-download {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.template-download p {
+  margin: 0;
+  color: #666;
+}
+
+.template-btn {
+  padding: 0.5rem 1rem;
+  background: var(--asu-gold);
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.template-btn:hover {
+  background: #d4a000;
+}

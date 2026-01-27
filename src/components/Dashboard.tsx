@@ -47,7 +47,7 @@ export function Dashboard() {
   }, []);
 
   const filteredProjects = useMemo(() => {
-    return projects.filter(project => {
+    const filtered = projects.filter(project => {
       const matchesStatus = statusFilter === 'all' || project.healthStatus === statusFilter;
       const matchesCategory = categoryFilter === 'all' || project.category === categoryFilter;
       const matchesSearch = searchQuery === '' ||
@@ -56,6 +56,12 @@ export function Dashboard() {
       const matchesSpring = springFilter === 'all' || getSpringStatusCategory(project.springStatus) === springFilter;
 
       return matchesStatus && matchesCategory && matchesSearch && matchesSpring;
+    });
+    // Sort pinned projects to the top
+    return filtered.sort((a, b) => {
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+      return 0;
     });
   }, [statusFilter, categoryFilter, searchQuery, springFilter]);
 

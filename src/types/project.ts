@@ -73,4 +73,5 @@ export interface Project {
   isIndonesia?: boolean; // Indonesia project flag
   deliverables?: Record<string, DeliverableSubmission>; // Deliverable submissions by deliverable ID
   peopleImpacted?: number; // Estimated number of people impacted by this project
+  pinned?: boolean; // Pinned projects appear at the top of lists
 }
