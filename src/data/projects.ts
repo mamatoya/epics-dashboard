@@ -8,8 +8,8 @@ export const projects: Project[] = [
   {
     id: 'solar-powered-cold-chain',
     name: 'Solar Powered Cold Chain',
-    description: 'Developing solar-powered cold chain solutions for preserving temperature-sensitive goods in areas with limited electricity access.',
-    communityPartner: '',
+    description: 'Developing a solar-powered refrigeration/cold storage system for preserving food and medical supplies in Nigeria. Key unknowns include target region, storage volume, temperature requirements, mobility needs, and battery duration.',
+    communityPartner: 'Nigeria-based partner',
     teamMembers: [],
     portfolioManager: '',
     industryMentor: '',
@@ -17,11 +17,16 @@ export const projects: Project[] = [
     blockers: [],
     oneDriveUrl: 'https://arizonastateu-my.sharepoint.com/shared?id=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments%2FEPICS%20Master%20Folder%2FEPICS%20Team%20Folder%2FSolar%20Powered%20ColdChain%2FSpring%202026&listurl=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments',
     media: [],
-    lastUpdated: '2025-01-26',
-    semester: 'Spring 2025',
+    lastUpdated: '2026-01-28',
+    semester: 'Spring 2026',
     category: 'Sustainability',
     campus: 'Tempe',
-    pinned: true
+    stage: 1,
+    pinned: true,
+    deliverables: {
+      'email-community-partner-week3': { status: 'green' },
+      'interview-questions-agenda': { status: 'green' }
+    }
   },
   {
     id: 'adaptive-snowboard',
@@ -118,13 +123,17 @@ export const projects: Project[] = [
     blockers: [],
     oneDriveUrl: 'https://arizonastateu-my.sharepoint.com/shared?id=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments%2FEPICS%20Master%20Folder%2FEPICS%20Team%20Folder%2FMonkey%20Enrichment%2FSpring%202026&listurl=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments&wa=wsignin1%2E0',
     media: [],
-    lastUpdated: '2024-12-03',
-    semester: 'Fall 2024',
+    lastUpdated: '2026-01-28',
+    semester: 'Spring 2026',
     category: 'Sustainability',
     campus: 'Tempe',
     meetingTime: { day: 'Monday', time: '3:05-3:55p' },
     springStatus: 'Monday 4:00-5:15pm (Might be delivering)',
-    pinned: true
+    stage: 2,
+    pinned: true,
+    deliverables: {
+      'email-community-partner-week3': { status: 'green' }
+    }
   },
   {
     id: 'adaptive-sports',
@@ -207,7 +216,7 @@ export const projects: Project[] = [
   {
     id: 'fse-100-ar-vr-activity',
     name: 'FSE 100 AR/VR Activity',
-    description: 'Creating augmented and virtual reality educational activities for FSE 100 introductory engineering students.',
+    description: 'Creating augmented and virtual reality educational activities for FSE 100 introductory engineering students. Continuing from Spring 2025.',
     communityPartner: 'Steven Osburn (dosburn@asu.edu) - ASU Fulton Schools of Engineering',
     teamMembers: [],
     portfolioManager: '',
@@ -216,14 +225,19 @@ export const projects: Project[] = [
     blockers: [],
     oneDriveUrl: 'https://arizonastateu-my.sharepoint.com/shared?id=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments%2FEPICS%20Master%20Folder%2FEPICS%20Team%20Folder%2FFSE100%20AR%20VR%20Activity%20Tuesday%2FSpring%202026%2FTeam%20Assignments%20%2D%20Templates&viewid=f7cedf39%2Df953%2D4f31%2Db248%2D863dd93d2ca8&wa=wsignin1%2E0',
     media: [],
-    lastUpdated: '2024-12-03',
-    semester: 'Fall 2024',
+    lastUpdated: '2026-01-28',
+    semester: 'Spring 2026',
     category: 'Education',
     campus: 'Tempe',
     springStatus: 'Monday 5:30-6:45pm',
     designReviewScore: 1.0,
     peopleImpacted: 2500,
-    pinned: true
+    stage: 2,
+    pinned: true,
+    deliverables: {
+      'email-community-partner-week3': { status: 'green' },
+      'interview-questions-agenda': { status: 'yellow' }
+    }
   },
   {
     id: 'personal-protective-equipment-ppe',
@@ -323,8 +337,8 @@ export const projects: Project[] = [
   {
     id: 'devils-prosthetics',
     name: 'Devils Prosthetics',
-    description: 'Designing and manufacturing prosthetic devices for community members in need.',
-    communityPartner: 'Prosthetics Recipients',
+    description: 'Continuing prosthetic device development for Limblab. Stage 3 project with working prototype, CAD files, Statement of Work, and Gantt chart from last semester.',
+    communityPartner: 'Limblab',
     teamMembers: [],
     portfolioManager: '',
     industryMentor: '',
@@ -332,19 +346,24 @@ export const projects: Project[] = [
     blockers: [],
     oneDriveUrl: '',
     media: [],
-    lastUpdated: '2024-12-03',
-    semester: 'Fall 2024',
+    lastUpdated: '2026-01-28',
+    semester: 'Spring 2026',
     category: 'Health',
     campus: 'Tempe',
     springStatus: 'Monday 7:00-8:15pm',
     designReviewScore: 0.5,
-    pinned: true
+    stage: 3,
+    pinned: true,
+    deliverables: {
+      'email-community-partner-week3': { status: 'green' },
+      'interview-questions-agenda': { status: 'green' }
+    }
   },
   {
     id: 'food-web-food',
     name: 'Food Web (Food)',
     description: 'Completing and refining an underground water storage system at Encounter Farms in Mesa, along with designing new infrastructure including compost bins for community gardens, vertical farming systems, and washing stations. Team volunteers at community gardens within the Food Web Network on weekends.',
-    communityPartner: 'Encounter Farms & Food Web Network',
+    communityPartner: 'Bonnie - Encounter Farms & Food Web Network',
     teamMembers: [],
     portfolioManager: '',
     industryMentor: '',
@@ -352,13 +371,17 @@ export const projects: Project[] = [
     blockers: [],
     oneDriveUrl: 'https://arizonastateu-my.sharepoint.com/shared?id=%2Fpersonal%2Fjjschoep%5Fasurite%5Fasu%5Fedu%2FDocuments%2FEPICS%20Master%20Folder%2FEPICS%20Team%20Folder%2FFood%20Web%2FFood%20Web%20%28Food%20Team%29%2FSpring%202026&viewid=f7cedf39%2Df953%2D4f31%2Db248%2D863dd93d2ca8&view=0',
     media: [],
-    lastUpdated: '2024-12-03',
-    semester: 'Fall 2024',
+    lastUpdated: '2026-01-28',
+    semester: 'Spring 2026',
     category: 'Sustainability',
     campus: 'Tempe',
     springStatus: 'Monday 7:00-8:15pm',
     designReviewScore: 0.75,
-    pinned: true
+    stage: 2,
+    pinned: true,
+    deliverables: {
+      'email-community-partner-week3': { status: 'green' }
+    }
   },
   {
     id: 'indonesia-adaptive-hand-solutions',

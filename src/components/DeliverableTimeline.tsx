@@ -150,7 +150,10 @@ export function DeliverableTimeline({ project }: DeliverableTimelineProps) {
   };
 
   const isDeliverableCompleted = (deliverableId: string): boolean => {
-    return completed[deliverableId] || false;
+    // Check localStorage first, then fall back to project data
+    if (completed[deliverableId]) return true;
+    const submission = project.deliverables?.[deliverableId];
+    return submission?.status === 'green';
   };
 
   // Calculate phase completion based on checked deliverables
@@ -293,8 +296,14 @@ export function DeliverableTimeline({ project }: DeliverableTimelineProps) {
                     const submission = project.deliverables?.[deliverable.id];
                     const isChecked = isDeliverableCompleted(deliverable.id);
 
+                    const statusClass = isChecked
+                      ? 'status-green'
+                      : submission?.status === 'yellow'
+                        ? 'status-yellow'
+                        : 'status-none';
+
                     return (
-                      <div key={deliverable.id} className={`phase-deliverable ${isChecked ? 'status-green' : 'status-none'}`}>
+                      <div key={deliverable.id} className={`phase-deliverable ${statusClass}`}>
                         <button
                           type="button"
                           className={`deliverable-checkbox ${isChecked ? 'checked' : ''}`}
